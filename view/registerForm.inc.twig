@@ -1,0 +1,22 @@
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="action_page.php">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <img src="images/logo_avatar.png" alt="Avatar" class="avatar">
+        <div class="containerLog">
+            <label><b>Uživatelské jméno</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label><b>Heslo</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <label><b>E-mail</b></label>
+            <input type="email" placeholder="Enter E-mail" name="email" required>
+
+            <button type="button" class="btn btn-success">Registrovat</button>
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger">Zrušit</button>
+        </div>
+    </form>
+</div>
