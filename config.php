@@ -10,11 +10,11 @@
 include_once("settings_db.inc.php");
 include_once("db_pdo.class.php");
 include_once("functions.inc.php");
-include_once("controller/users.class.php");
-include_once("controller/login.class.php");
-include_once("model/login.inc.php");
-include_once("model/logout.inc.php");
-include_once("model/register.inc.php");
+include_once("model/users.class.php");
+include_once("model/login.class.php");
+include_once("controller/login.inc.php");
+include_once("controller/logout.inc.php");
+include_once("controller/register.inc.php");
 
 /*
 $action = @$_POST["action"]."";

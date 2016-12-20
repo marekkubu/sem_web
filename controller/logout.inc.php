@@ -1,5 +1,5 @@
 <?php
-require_once('controller/login.class.php');
+require_once('model/login.class.php');
 
 // Zkusíme se přihlásit
 if (isset($_POST['login_out'])) {

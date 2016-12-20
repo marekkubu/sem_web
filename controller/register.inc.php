@@ -1,6 +1,6 @@
 <?php
-require_once('controller/login.class.php');
-require_once('controller/users.class.php');
+require_once('model/login.class.php');
+require_once('model/users.class.php');
 // Zkusíme se přihlásit
 if (isset($_POST['register'])) {
     $newUser = $_POST['reg_user'];

@@ -1,6 +1,6 @@
 <?php
 define("USER", 'user');
-require_once('controller/users.class.php');
+require_once('model/users.class.php');
 require_once('settings_db.inc.php');
 
 class Login {

@@ -6,7 +6,7 @@
  * Time: 1:13
  */
 
-require_once('controller/login.class.php');
+require_once('model/login.class.php');
 
 $page = @$_REQUEST["page"];
 
