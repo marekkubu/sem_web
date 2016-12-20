@@ -43,7 +43,7 @@ class Login {
             return "chyba"; //chyba v pozadavku
         }
     }*/
-    public function userExists($login){
+  /*  public function userExists($login){
         $usr = $this->userInfo($login);
         if($usr == null) { // uzivatel neni v DB
             return false;
@@ -51,7 +51,7 @@ class Login {
         else {
             return true;
         }
-    }
+    }*/
     public static function isLog() {
         if (isset($_SESSION[USER]['LOGIN']) && $_SESSION[USER]['LOGIN']) {
             return true;
@@ -60,7 +60,7 @@ class Login {
             return false;
         }
 
-    }
+    }/*
     public function userInfo($login){
         $sth = $this->db->prepare("SELECT * FROM uzivatel
                WHERE username LIKE :username");
@@ -68,7 +68,7 @@ class Login {
         $sth->execute();
         $row = $sth->fetch();
         return $row;
-    }
+    }*/
     public static function getUserInfo($what) {
 
         if (isset($_SESSION[USER])) {

@@ -9,14 +9,14 @@
 // nacteni souboru
 include_once("settings_db.inc.php");
 include_once("db_pdo.class.php");
-//include_once("uzivatele.class.php");
 include_once("functions.inc.php");
 include_once("controller/users.class.php");
 include_once("controller/login.class.php");
 include_once("model/login.inc.php");
 include_once("model/logout.inc.php");
+include_once("model/register.inc.php");
 
-
+/*
 $action = @$_POST["action"]."";
 $user = @$_POST["user"];
 $username=@$_POST["username"];
@@ -47,7 +47,7 @@ else echo "$parm neexistuje";*/
 
 //$users->addUser("Ivan","hesloheslo","ivan@gmail.com");
 
-
+/*
 //MVC
 function autoloader($class) {
     $fileCont = 'controller/' . $class . '.php';
@@ -62,4 +62,4 @@ function autoloader($class) {
         require_once $fileModel;
     }
 
-}
+}*/

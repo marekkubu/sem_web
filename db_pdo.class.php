@@ -8,7 +8,7 @@
  */
 class db_pdo
 {
-    private $connection;
+    public $connection;
 
     // *********************************************************************************
     // *****************   DB - univerzalni metody START      **************************

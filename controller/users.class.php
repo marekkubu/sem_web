@@ -1,7 +1,6 @@
 <?php
 
 require_once('db_pdo.class.php');
-require_once('settings_db.inc.php');
 
 
 // Třída pracující s tabulkou USERS pomocí PDO
@@ -19,26 +18,60 @@ class Users extends db_pdo {
 
         return $info;
     }
-    public function addUser($username, $password, $email){
-        if($this->userExists($username)){
+   /* public function addUser($username, $password, $email){
+       if($this->userExists($username)){
             return "obsazeno";
         }
-        try {
-            $sth = $this->db->prepare("INSERT INTO uzivatel(username, password, email)
-                VALUES (:username,:password,:email)");
-            $sth->bindParam(':username', $username);
-            $sth->bindParam(':password', $password);
-            $sth->bindParam(':email', $email);
-            $sth->execute();
-            if($this->userExists($username)){
-                return "ok";
-            }
-            else {
-                return "chyba";
-            }
-        } catch (Exception $e) {
-            return "chyba"; //chyba v pozadavku
-        }
+            $item = array();
+            $item['username'] = $username;
+            $item['password'] = $password;
+            $item['email'] = $email;
+            $this->DBInsert("uzivatel", $item);
+
+        $stmt = $this->connection->prepare("INSERT INTO uzivatel VALUES(:username, :password,  :email)");
+
+        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+        $stmt->bindParam(":password", $password, PDO::PARAM_STR);
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+        return $stmt->execute();
+    }*/
+     public function addUser($username, $password, $email){
+         if($this->userExists($username)){
+             return "obsazeno";
+         }
+         try {
+             $sth = $this->connection->prepare("INSERT INTO uzivatel(username, password, email)
+                 VALUES (:username,:password,:email)");
+             $sth->bindParam(':username', $username);
+             $sth->bindParam(':password', $password);
+             $sth->bindParam(':email', $email);
+             $sth->execute();
+             if($this->userExists($username)){
+                 return "ok";
+             }
+             else {
+                 return "chyba";
+             }
+         } catch (Exception $e) {
+             return "chyba"; //chyba v pozadavku
+         }
+     }
+      public function userExists($login){
+          $usr = $this->userInfo($login);
+          if($usr == null) { // uzivatel neni v DB
+              return false;
+          }
+          else {
+              return true;
+          }
+      }
+    public function userInfo($login){
+        $sth = $this->connection->prepare("SELECT * FROM uzivatel
+               WHERE username LIKE :username");
+        $sth->bindParam(':username', $login);
+        $sth->execute();
+        $row = $sth->fetch();
+        return $row;
     }
 
     // Načte všechny uživatele

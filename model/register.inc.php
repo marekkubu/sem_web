@@ -1,11 +1,17 @@
 <?php
 require_once('controller/login.class.php');
-
+require_once('controller/users.class.php');
 // Zkusíme se přihlásit
-if (isset($_POST['login_out'])) {
-    echo "LOGOUT!";
-
-    Login::log_out();
-    header("Location: /sem_web/");
+if (isset($_POST['register'])) {
+    $newUser = $_POST['reg_user'];
+    $users = new Users();
+    $users->Connect();
+    $add=$users->addUser($newUser['username'],$newUser['password'],$newUser['email']);
+    if($add=='ok'){
+        Login::log_in($newUser['username'],$newUser['password']);
+        header('Refresh: 0');
+    }elseif($add=="obsazeno"){
+        echo " OBSAZENO";
+    }
 
 }
