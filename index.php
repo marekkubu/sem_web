@@ -5,7 +5,7 @@
  * Date: 12. 12. 2016
  * Time: 19:49
  */
-
+session_start();
 
 require_once 'Twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
@@ -26,6 +26,4 @@ require 'view/obsah.php';
 $template_params["obsah"] = $obsah;
 
 echo $template->render($template_params);
-
 require_once ("config.php");
-spl_autoload_register('autoloader');

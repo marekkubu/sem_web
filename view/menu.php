@@ -6,6 +6,8 @@
  * Time: 1:13
  */
 
+require_once('controller/login.class.php');
+
 $page = @$_REQUEST["page"];
 
 $pages = array();
@@ -27,8 +29,26 @@ $menu .="</ul>";
 //FORMULAR PRO REGISTRACI
 include_once("view/registerForm.inc.twig");
 
+if (Login::isLog()) {
+    $menu .= "<ul class='nav navbar-nav navbar-right'>
+<li class='dropdown'>
+<a href='#' class='dropdown-toggle' data-toggle='dropdown'> <b>" . Login::getUserInfo('NAME') . "</b> <span class='caret'></span></a>
+			<ul class='dropdown-menu'>
+			
+				<form method='post'>
+				<input type=\"hidden\" name=\"login_out\" value=\"logout\">
+				<li><button class=\"btn btn-danger btn-block\" type=\"submit\" name='login_out'>Odhlásit se</button></li>
+				</form>
+				</ul>
+				
+				</li>
+    
+</ul>";
+
+}
+else {
 //PRIHLASIT
-$menu .="<ul class='nav navbar-nav navbar-right'>
+    $menu .= "<ul class='nav navbar-nav navbar-right'>
         <li class='dropdown'>
            <a href='#' class='dropdown-toggle' data-toggle='dropdown'><b>Přihlásit se</b> <span class='caret'></span></a>
 			<ul id='login-dp' class='dropdown-menu'>
@@ -38,13 +58,13 @@ $menu .="<ul class='nav navbar-nav navbar-right'>
 							Přihlášení
 								 <form class='form' method='post' id='login-nav'>
                                         <div class='form-group'>
-											 <input type='email' class='form-control'  name='username' placeholder='Email address' required>
+											 <input type='text' class='form-control'  name='user[username]' placeholder='Username' required>
 										</div>
 										<div class=\"form-group\">
-											 <input type='password' name='password' class=\"form-control\" id=\"exampleInputPassword2\" placeholder=\"Password\" required>
+											 <input type='password' name='user[password]' class=\"form-control\" id=\"exampleInputPassword\" placeholder=\"Password\" required>
 										</div>
 										<div class=\"form-group\">
-											 <button type=\"submit\" class=\"btn btn-primary btn-block\">Přihlásit</button>
+											 <button type=\"submit\" class=\"btn btn-primary btn-block\" name='login_go'>Přihlásit</button>
 										</div>
 								 </form>
 							</div>
@@ -57,9 +77,10 @@ $menu .="<ul class='nav navbar-nav navbar-right'>
 				</ul>
 				</li>
 				</ul>";
-
+}
+/*
 $username=@$_POST["username"];
 $password=@$_POST["password"];
-
+*/
 //REGISTRACE
 

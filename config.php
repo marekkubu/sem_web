@@ -5,71 +5,29 @@
  * Date: 12. 12. 2016
  * Time: 19:48
  */
-//SESSION
-session_start();
 
 // nacteni souboru
 include_once("settings_db.inc.php");
 include_once("db_pdo.class.php");
-include_once("uzivatele.class.php");
+//include_once("uzivatele.class.php");
 include_once("functions.inc.php");
+include_once("controller/users.class.php");
+include_once("controller/login.class.php");
+include_once("model/login.inc.php");
+include_once("model/logout.inc.php");
 
-$key_my_user = "username";
-if (isset($_SESSION[$key_my_user]))
-{
-    // muzu provest
-}
-else $_SESSION[$key_my_user] = array();
-$prihlasen = false;
-if (isset($_SESSION[$key_my_user]["login"]))
-    $prihlasen = true;
-//printr($_POST);
 
 $action = @$_POST["action"]."";
 $user = @$_POST["user"];
 $username=@$_POST["username"];
+$userPW=@$_POST["password"];
 printr($username);
-if ($action == "login_go")
-{
-    echo "uzivatel: ";
-    printr($user);
-    if (trim($user["login"]) == "admin" && trim($user["heslo"]) == "heslo")
-    {
-        $_SESSION[$key_my_user]["login"] = $user["login"];
-        printr($key_my_user);
-        $prihlasen = true;
-    }
-}
-if ($action == "login_out")
-{
-    $prihlasen = false;
-    echo"JUPI";
-}
+printr($userPW);
 
-// konec prihlasovani
-if ($prihlasen)
-{
-    echo "<h1>Přihlášený uživatel</h1>";
-    echo "<form method=\"post\">
-                    <input type='hidden' name='action' value='login_out'/>
-                    <input type='submit' value='Odhlásit'>
-                </form>";
-}
-else
-{
-    echo "<h1>Nepřihlášený uživatel</h1>";
-    echo "<form method=\"post\">
-                    <input type='hidden' name='action' value='login_go'/>
-                    Login: <input type='text' name='user[login]'/>
-                    Username: <input type='text' name='username2'/>
-                    Heslo: <input type='text' name='user[heslo]'/>
-                    <input type='submit' value='Přihlásit'>
-                </form>";
-}
 // vytvoreni objektu
-$users = new uzivatele();
+$users = new Users();
 $users->Connect();
-//$users->addUser("ivan","hesloheslo","Mail");
+//$users->addUser("Marek","passw","emailsd.sda");
 $array_users = $users->LoadAllUsers();
 // printr($seznam_predmetu);
 if ($array_users != null)
@@ -77,9 +35,15 @@ if ($array_users != null)
     {
         echo  "zkratka: $user[username], nazev: $user[password] <br/>";
     }
-$parm="karel";
-if ($users->userExists($parm));
-    echo "Je to taaaam:  $parm ";
+$parm=$username;
+/*
+if ($users->userExists($parm)==true){
+    echo "Prihlasenz uyivatel existuje:  $parm ";
+}
+else echo "$parm neexistuje";*/
+//Login::log_in("admin","heslo");
+//Login::log_out();
+
 
 //$users->addUser("Ivan","hesloheslo","ivan@gmail.com");
 
