@@ -28,7 +28,7 @@ if (isset($_POST['register'])) {
         Login::log_in($newUser['username'],$newUser['password']);
         header('Refresh: 0');
     }elseif($add=="obsazeno"){
-        echo " OBSAZENO";
+        echo " OBSAZENO!";
     }
 
 }
