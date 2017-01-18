@@ -6,7 +6,7 @@ if (isset($_POST['register'])) {
     $newUser = $_POST['reg_user'];
     $users = new Users();
     $users->Connect();
-    $add=$users->addUser($newUser['username'],$newUser['password'],$newUser['email']);
+    $add=$users->addUser($newUser['username'],$newUser['password'],$newUser['email'],"viewer");
     if($add=='ok'){
         Login::log_in($newUser['username'],$newUser['password']);
         header('Refresh: 0');

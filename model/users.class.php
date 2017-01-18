@@ -9,7 +9,7 @@ class Users extends db_pdo {
     // Načte uživatele s daným username
     public function loadUser($username)
     {
-        $table_name = "uzivatel";
+        $table_name = "users";
         $columns = "*";
         $where = array();
         $where[] = array("column" => "username", "value" => $username, "symbol" => "=");
@@ -35,16 +35,18 @@ class Users extends db_pdo {
         $stmt->bindParam(":email", $email, PDO::PARAM_STR);
         return $stmt->execute();
     }*/
-     public function addUser($username, $password, $email){
+     public function addUser($username, $password, $email, $powers){
+         echo "$username, $password, $email, $powers";
          if($this->userExists($username)){
              return "obsazeno";
          }
          try {
-             $sth = $this->connection->prepare("INSERT INTO uzivatel(username, password, email)
-                 VALUES (:username,:password,:email)");
+             $sth = $this->connection->prepare("INSERT INTO users(username, password, email, powers)
+                 VALUES (:username,:password,:email,:powers)");
              $sth->bindParam(':username', $username);
              $sth->bindParam(':password', $password);
              $sth->bindParam(':email', $email);
+             $sth->bindParam(':powers', $powers);
              $sth->execute();
              if($this->userExists($username)){
                  return "ok";
@@ -66,7 +68,7 @@ class Users extends db_pdo {
           }
       }
     public function userInfo($login){
-        $sth = $this->connection->prepare("SELECT * FROM uzivatel
+        $sth = $this->connection->prepare("SELECT * FROM users
                WHERE username LIKE :username");
         $sth->bindParam(':username', $login);
         $sth->execute();
@@ -77,12 +79,10 @@ class Users extends db_pdo {
     // Načte všechny uživatele
     public function loadAllUsers()
     {
-        $table_name = "uzivatel";
+        $table_name = "users";
         $columns = "*";
         $where = array();
-
         $users = $this->DBSelectAll($table_name,  $columns, null);
-
         return $users;
     }
 

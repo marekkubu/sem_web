@@ -11,8 +11,14 @@ $db_server = "127.0.0.1";
 $db_name = "konference";
 $db_user = "root";
 $db_pass = "";
-*/
+
 define("DB_SERVER", "127.0.0.1");
 define("DB_DATABASE_NAME", "konference");
+define("DB_USER_LOGIN", "root");
+define("DB_USER_PASSWORD", "");
+*/
+
+define("DB_SERVER", "127.0.0.1");
+define("DB_DATABASE_NAME", "myapp");
 define("DB_USER_LOGIN", "root");
 define("DB_USER_PASSWORD", "");

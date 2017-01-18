@@ -1,0 +1,382 @@
+Index: Prihlaseni.class.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Prihlaseni.class.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ Prihlaseni.class.php	(revision )
+@@ -7,7 +7,7 @@
+  * Time: 0:15
+  */
+ class Prihlaseni
+-{
++{/*
+     public $uzivatel;
+     private $db;
+     public function __construct(){
+@@ -15,6 +15,7 @@
+         session_start();
+         // importuje funkce pro práci s databází
+         include_once("uzivatele.class.php");
++        include_once ("settings_db.inc.php");
+         $this->db = new Database();
+     }
+     public function jePrihlasen(){
+@@ -51,5 +52,5 @@
+         }
+         return $regSucccess;
+     }
+-
++*/
+ }
+\ No newline at end of file
+Index: view/menu.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/menu.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ view/menu.php	(revision )
+@@ -26,9 +26,10 @@
+
+ //FORMULAR PRO REGISTRACI
+ include_once("view/registerForm.inc.twig");
++include_once("Prihlaseni.class.php");
+
+ //PRIHLASIT
+-$menu .="<ul class='nav navbar-nav navbar-right'>
++    $menu .= "<ul class='nav navbar-nav navbar-right'>
+         <li class='dropdown'>
+            <a href='#' class='dropdown-toggle' data-toggle='dropdown'><b>Přihlásit se</b> <span class='caret'></span></a>
+ 			<ul id='login-dp' class='dropdown-menu'>
+@@ -58,8 +59,17 @@
+ 				</li>
+ 				</ul>";
+
+-$username=@$_POST["username"];
+-$password=@$_POST["password"];
++    /*$username = @$_POST["username"];
++    $password = @$_POST["password"];
++    $user = @$_POST["user"];*/
++
++
++    $menu .= "<ul class='nav navbar-nav navbar-right'>
++<li>
++<a href='#'><b>Přihlášen</b></a>
++</li>
++
++</ul>";
+
+ //REGISTRACE
+
+Index: view/obsah.php
+===================================================================
+--- view/obsah.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ view/obsah.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
+@@ -1,39 +0,0 @@
+-<?php
+-/**
+- * Created by PhpStorm.
+- * User: Marek
+- * Date: 13. 12. 2016
+- * Time: 1:51
+- */
+-
+-function phpWrapperFromFile($filename)
+-{
+-    ob_start();
+-
+-    if (file_exists($filename) && !is_dir($filename))
+-    {
+-        include($filename);
+-    }
+-
+-    // nacte to z outputu
+-    $obsah = ob_get_clean();
+-    return $obsah;
+-}
+-
+-// default je uvod
+-if($page == "")
+-    $page = "uvod";
+-
+-//echo "page je : $page ";
+-
+-if($page == "uvod")
+-    $filename = "view/obsah_inc/uvod.inc.php";
+-
+-elseif($page == "kontakt")
+-    $filename = "view/obsah_inc/kontakt.inc.twig";
+-
+-else
+-    $filename = "view/obsah_inc/404.inc.php";
+-
+-
+-$obsah = phpWrapperFromFile($filename);
+\ No newline at end of file
+Index: view/obsah_inc/uvod.inc.php
+===================================================================
+--- view/obsah_inc/uvod.inc.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ view/obsah_inc/uvod.inc.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
+@@ -1,8 +0,0 @@
+-<?php
+-/**
+- * Created by PhpStorm.
+- * User: Marek
+- * Date: 13. 12. 2016
+- * Time: 2:05
+- */
+-echo "UVOD";
+\ No newline at end of file
+Index: view/404.inc.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/404.inc.twig	(revision )
++++ view/404.inc.twig	(revision )
+@@ -0,0 +1,5 @@
++<div class = 'container'>
++    <hr>
++    <div class = 'error'><h1>404 Page not found</h1></div>
++    <hr>
++</div>
+Index: view/default.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/default.twig	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ view/default.twig	(revision )
+@@ -4,9 +4,9 @@
+ To change this template file, choose Tools | Templates
+ and open the template in the editor.
+ -->
+-<html>
++<html lang="cs">
+ <head>
+-    <title>{{nadpis1}}</title>
++    <title>{{title}}</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+@@ -19,7 +19,6 @@
+
+ </head>
+ <body>
+-
+ <nav class="navbar navbar-default">
+     <div class="container-fluid">
+         <div class="navbar-header">
+@@ -31,5 +30,6 @@
+ <div class="container text-center">
+     {{ obsah  | raw }}
+ </div>
++
+ </body>
+ </html>
+\ No newline at end of file
+Index: index.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- index.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ index.php	(revision )
+@@ -5,8 +5,62 @@
+  * Date: 12. 12. 2016
+  * Time: 19:49
+  */
++/*
++session_start();
+
++function phpWrapperFromFile($filename) {
++    ob_start();
+
++    if (file_exists($filename) && !is_dir($filename))
++        include($filename);
++
++    $content = ob_get_clean();
++    return $content;
++}
++
++// parametr stranky
++$page = @$_REQUEST["page"];
++$subpage = @$_REQUEST["subpage"];
++
++switch ($page) {
++    case "" :         $filename = "content/home.inc.php";
++        break;
++    case "home" :     $filename = "content/home.inc.php";
++        break;
++    case "login":     $filename = "content/login.inc.php";
++        break;
++    case "register" : $filename = "content/register.inc.php";
++        break;
++    case "contact" :  $filename = "content/contact.inc.php";
++        break;
++    case "logout" :   $filename = "content/logout.inc.php";
++        break;
++    default :         $filename = "content/404.inc.php";
++        break;
++}
++
++$content = phpWrapperFromFile($filename);
++$menu = phpWrapperFromFile(view/menu.php);
++
++
++require_once 'Twig/lib/Twig/Autoloader.php';
++Twig_Autoloader::register();
++// cesta k adresari se sablonama - od index.php
++$loader = new Twig_Loader_Filesystem('view');
++$twig = new Twig_Environment($loader); // takhle je to bez cache
++// nacist danou sablonu z adresare
++$template = $twig->loadTemplate('default.twig');
++
++// render vrati data pro vypis nebo display je vypise
++// v poli jsou data pro vlozeni do sablony
++$template_params = array();
++require 'view/uvod.inc.twig';
++$template_params["obsah"] = $obsah;
++
++echo $template->render($template_params);
++
++require_once ("config.php");
++spl_autoload_register('autoloader');*/
+ require_once 'Twig/lib/Twig/Autoloader.php';
+ Twig_Autoloader::register();
+ // cesta k adresari se sablonama - od index.php
+@@ -14,18 +68,13 @@
+ $twig = new Twig_Environment($loader); // takhle je to bez cache
+ // nacist danou sablonu z adresare
+ $template = $twig->loadTemplate('default.twig');
+-
+ // render vrati data pro vypis nebo display je vypise
+ // v poli jsou data pro vlozeni do sablony
+ $template_params = array();
+-
+ require 'view/menu.php';
+ $template_params["menu"] = $menu;
+-
+ require 'view/obsah.php';
+ $template_params["obsah"] = $obsah;
+-
+ echo $template->render($template_params);
+-
+ require_once ("config.php");
+ spl_autoload_register('autoloader');
+\ No newline at end of file
+Index: uzivatele.class.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- uzivatele.class.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ uzivatele.class.php	(revision )
+@@ -7,16 +7,18 @@
+  * Time: 21:55
+  */
+ include_once ("settings_db.inc.php");
++include_once ("db_pdo.class.php");
++
+ class uzivatele extends db_pdo
+ {
+-    private $db;
++    /*private $db;
+     public function __construct(){
+         global $db_server, $db_name, $db_user, $db_pass;
+         // informace se berou ze settings
+         $conn = new PDO("mysql:host=$db_server;dbname=$db_name;charset=utf8", $db_user, $db_pass);
+         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $this->db = $conn;
+-    }
++    }*/
+
+     /**
+      * Nacte vsechny uzivatele
+Index: config.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- config.php	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ config.php	(revision )
+@@ -5,9 +5,6 @@
+  * Date: 12. 12. 2016
+  * Time: 19:48
+  */
+-//SESSION
+-session_start();
+-
+ // nacteni souboru
+ include_once("settings_db.inc.php");
+ include_once("db_pdo.class.php");
+@@ -29,6 +26,7 @@
+ $user = @$_POST["user"];
+ $username=@$_POST["username"];
+ printr($username);
++
+ if ($action == "login_go")
+ {
+     echo "uzivatel: ";
+@@ -47,6 +45,7 @@
+ }
+
+ // konec prihlasovani
++
+ if ($prihlasen)
+ {
+     echo "<h1>Přihlášený uživatel</h1>";
+@@ -70,14 +69,16 @@
+ $users = new uzivatele();
+ $users->Connect();
+ //$users->addUser("ivan","hesloheslo","Mail");
++//$jePrihlasen=$users->prihlasUzivatele("admin", "heslo");
+ $array_users = $users->LoadAllUsers();
+ // printr($seznam_predmetu);
+ if ($array_users != null)
+     foreach ($array_users as $user)
+     {
+-        echo  "zkratka: $user[username], nazev: $user[password] <br/>";
++        echo  "jmeno: $user[username], heslo: $user[password], email: $user[email] <br/>";
+     }
+ $parm="karel";
++
+ if ($users->userExists($parm));
+     echo "Je to taaaam:  $parm ";
+
+Index: view/obsah_inc/kontakt.inc.twig
+===================================================================
+--- view/obsah_inc/kontakt.inc.twig	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ view/obsah_inc/kontakt.inc.twig	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
+@@ -1,2 +0,0 @@
+-<h2>Kontakt</h2>
+-<h3>Marek Kubů</h3>
+\ No newline at end of file
+Index: view/registerForm.inc.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/registerForm.inc.twig	(revision 2dc47ecdcbc8181e265cb9d263ad41c619525282)
++++ view/registerForm.inc.twig	(revision )
+@@ -7,15 +7,15 @@
+         <img src="images/logo_avatar.png" alt="Avatar" class="avatar">
+         <div class="containerLog">
+             <label><b>Uživatelské jméno</b></label>
+-            <input type="text" placeholder="Enter Username" name="uname" required>
++            <input type="text" placeholder="Enter Username" name="user[username]" required>
+
+             <label><b>Heslo</b></label>
+-            <input type="password" placeholder="Enter Password" name="psw" required>
++            <input type="password" placeholder="Enter Password" name="user[password]" required>
+
+             <label><b>E-mail</b></label>
+-            <input type="email" placeholder="Enter E-mail" name="email" required>
++            <input type="email" placeholder="Enter E-mail" name="user[email]" required>
+
+-            <button type="button" class="btn btn-success">Registrovat</button>
++            <button type="button" class="btn btn-success btn-block">Registrovat</button>
+             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger">Zrušit</button>
+         </div>
+     </form>

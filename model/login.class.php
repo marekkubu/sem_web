@@ -9,11 +9,11 @@ class Login {
         $db_users = new users();
         $db_users->Connect();
         $info = $db_users->loadUser($username);
-
         if(!empty($info) && $password == $info[0]['password']) {
             $_SESSION[USER] = array();
             $_SESSION[USER]['LOGIN'] = true;
             $_SESSION[USER]['NAME'] = $username;
+            $_SESSION[USER]['ID'] = $info[0]['idUser'];
         }
 
     }

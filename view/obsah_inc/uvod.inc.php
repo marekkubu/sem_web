@@ -10,7 +10,10 @@ echo "<h1>
 </h1>
 <div class=\"container\">
     <h3>Semestrální práce KIV/WEB</h3>
-    <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a \"help text\".</p>
-    <p>The .input-group-addon class attaches an icon or help text next to the input field.</p>
+    <p>Pokud nejste přihlášeny tak můžete pouze prohlížet přidané příspěvky.</p>
     <br>
+    
 </div>";
+include_once ("view/obsah_inc/articles.inc.twig");
+require_once('controller/showArticles.inc.php');
+

@@ -12,8 +12,9 @@ $page = @$_REQUEST["page"];
 
 $pages = array();
 $pages["uvod"] = "Úvod";
+$pages ["prispevky"] = "Příspěvky";
 $pages ["kontakt"] = "Kontakt";
-$pages ["login"] = "Login";
+
 
 $menu="";
 $menu .="<ul class='nav navbar-nav'>";

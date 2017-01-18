@@ -8,13 +8,34 @@
 
 // nacteni souboru
 include_once("settings_db.inc.php");
-include_once("db_pdo.class.php");
+include_once("model/db_pdo.class.php");
 include_once("functions.inc.php");
 include_once("model/users.class.php");
 include_once("model/login.class.php");
+include_once("model/article.class.php");
 include_once("controller/login.inc.php");
 include_once("controller/logout.inc.php");
 include_once("controller/register.inc.php");
+include_once("controller/addArticle.inc.php");
+
+/*
+$users = new Users();
+$users->Connect();
+//$users->addUser("Marek","passw","emailsd.sda");
+$array_users = $users->LoadAllUsers();
+foreach ($array_users as $user)
+{
+    echo  "jmeno: $user[username], heslo: $user[password], email: $user[email] <br/>";
+}
+
+$articles = new Article();
+$articles->Connect();
+//$users->addUser("Marek","passw","emailsd.sda");
+$array_articles = $articles->LoadAllArticles();
+foreach ($array_articles as $article)
+{
+    echo  "id prispevku: $article[idprispevek], obsah: $article[prispevekcol], datum: $article[datum] <br/>";
+}*/
 
 /*
 $action = @$_POST["action"]."";

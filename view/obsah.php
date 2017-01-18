@@ -32,6 +32,11 @@ if($page == "uvod")
 elseif($page == "kontakt")
     $filename = "view/obsah_inc/kontakt.inc.twig";
 
+elseif($page == "prispevky") {
+    $filename = "view/obsah_inc/prispevky.inc.twig";
+
+}
+
 else
     $filename = "view/obsah_inc/404.inc.php";
 
