@@ -23,19 +23,20 @@ class Article extends db_pdo
         return $info;
     }
 
-    public function addArticle($title, $abstact,$datetime,$userID,$file,$opinion, $type){
-        if($this->articleExists($title)){
+   /* public function addArticle($title, $abstact,$datetime,$userID,$file){*/
+       /* if($this->articleExists($title)){
             return "obsazeno";
-        }
-        try {
+        }*/
+      /*  try {
             $sth = $this->connection->prepare("INSERT INTO articles(title, abstract, dateAdd,User_idUser, file, opinion, type) VALUES (:title, :abstract, :dateAdd, :file, :opinion, :type)");
+
             $sth->bindParam(':title', $title);
             $sth->bindParam(':abstract', $abstact);
             $sth->bindParam(':dateAdd', $datetime);
             $sth->bindParam(':User_idUser', $userID);
             $sth->bindParam(':file', $file);
-            $sth->bindParam(':opinion', $opinion);
-            $sth->bindParam(':type', $type);
+            $sth->bindParam(':opinion', "N");
+            $sth->bindParam(':type', "PDF");
             $sth->execute();
             if($this->articleExists($title)){
                 return "ok";
@@ -46,7 +47,20 @@ class Article extends db_pdo
         } catch (Exception $e) {
             return "chyba"; //chyba v pozadavku
         }
-    }
+    }*/
+    public function addArticle($title, $abstract, $datetime, $userID, $file) {
+
+            $table_name = "articles";
+            $item = array();
+            $item['title'] = $title;
+            $item['abstract'] = $abstract;
+            $item['dateAdd'] = $datetime;
+            $item['User_idUser'] = $userID;
+            $item['file'] = $file;
+            $item['opinion'] = 'N';
+            $item['type'] = "PDF";
+            $this->DBInsert($table_name, $item);
+        }
 
     public function articleExists($title){
         $usr = $this->articleInfo($title);

@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60ff9500-6e49-494f-977e-a02e5f95b4cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/shelf/unnamed.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/shelf/unnamed/shelved.patch" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/addArticle.inc.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/showArticles.inc.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/article.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/obsah_inc/addArticleForm.inc.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/obsah_inc/articles.inc.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/obsah_inc/prispevky.inc.twig" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prihlaseni.class.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uzivatele.class.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/db_pdo.class.php" afterPath="$PROJECT_DIR$/model/db_pdo.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/login.inc.php" afterPath="$PROJECT_DIR$/controller/login.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/logout.inc.php" afterPath="$PROJECT_DIR$/controller/logout.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/register.inc.php" afterPath="$PROJECT_DIR$/controller/register.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/login.class.php" afterPath="$PROJECT_DIR$/model/login.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/users.class.php" afterPath="$PROJECT_DIR$/model/users.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings_db.inc.php" afterPath="$PROJECT_DIR$/settings_db.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/default.twig" afterPath="$PROJECT_DIR$/view/default.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/menu.php" afterPath="$PROJECT_DIR$/view/menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/obsah.php" afterPath="$PROJECT_DIR$/view/obsah.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/obsah_inc/uvod.inc.php" afterPath="$PROJECT_DIR$/view/obsah_inc/uvod.inc.php" />
-    </list>
+    <list default="true" id="60ff9500-6e49-494f-977e-a02e5f95b4cd" name="Default" comment="" />
     <ignored path="C:\xampp\htdocs\sem_web\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,8 +66,8 @@
       <file leaf-file-name="addArticle.inc.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/addArticle.inc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+            <state relative-caret-position="428">
+              <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -422,7 +398,7 @@
       <workItem from="1483656543509" duration="14000" />
       <workItem from="1483899480986" duration="289000" />
       <workItem from="1484386142252" duration="35000" />
-      <workItem from="1484733126556" duration="63000" />
+      <workItem from="1484733126556" duration="215000" />
     </task>
     <task id="LOCAL-00001">
       <created>1482181985658</created>
@@ -452,19 +428,33 @@
       <option name="project" value="LOCAL" />
       <updated>1482224556666</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Napojení na novou databazi,">
+      <created>1484733230191</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1484733230191</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Napojení na novou databazi,">
+      <created>1484733287976</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1484733287976</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83707000" />
+    <option name="totallyTimeSpent" value="83859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16336116" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5042373" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32875264" sideWeight="0.5042373" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.4957627" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -491,7 +481,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new version" />
     <MESSAGE value="Prihlasovani + registrace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prihlasovani + registrace" />
+    <MESSAGE value="Napojení na novou databazi," />
+    <option name="LAST_COMMIT_MESSAGE" value="Napojení na novou databazi," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -809,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/addArticle.inc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        <state relative-caret-position="428">
+          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding />
         </state>
       </provider>

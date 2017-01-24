@@ -36,6 +36,10 @@ elseif($page == "prispevky") {
     $filename = "view/obsah_inc/prispevky.inc.twig";
 
 }
+elseif($page == "moje_prispevky") {
+    $filename = "view/obsah_inc/moje_prispevky.inc.php";
+
+}
 
 else
     $filename = "view/obsah_inc/404.inc.php";

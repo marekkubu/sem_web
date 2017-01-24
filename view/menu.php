@@ -30,6 +30,7 @@ $menu .="</ul>";
 //FORMULAR PRO REGISTRACI
 include_once("view/registerForm.inc.twig");
 
+// Pokud je uzivatel prihlasen
 if (Login::isLog()) {
     $menu .= "<ul class='nav navbar-nav navbar-right'>
 <li class='dropdown'>
@@ -45,10 +46,16 @@ if (Login::isLog()) {
 				</li>
     
 </ul>";
-
+    $title="Moje příspěvky";
+    if($page == "moje_prispevky") $active_pom = "class='active'";
+        else $active_pom = "";
+    $menu .="<ul class='nav navbar-nav'>";
+    $menu .= "<li $active_pom><a href='index.php?page=moje_prispevky'>$title</a></li>";
+    $menu .="</ul>";
 }
+
+//Pokud uzivatel neni prihlasen
 else {
-//PRIHLASIT
     $menu .= "<ul class='nav navbar-nav navbar-right'>
         <li class='dropdown'>
            <a href='#' class='dropdown-toggle' data-toggle='dropdown'><b>Přihlásit se</b> <span class='caret'></span></a>
@@ -79,9 +86,3 @@ else {
 				</li>
 				</ul>";
 }
-/*
-$username=@$_POST["username"];
-$password=@$_POST["password"];
-*/
-//REGISTRACE
-

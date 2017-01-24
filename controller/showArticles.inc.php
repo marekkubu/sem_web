@@ -13,14 +13,35 @@ include_once("controller/register.inc.php");
     $articles = new Article();
     $articles->Connect();
     $array_articles = $articles->LoadAllArticles();
+    $index = 0;
+
+
+
     foreach ($array_articles as $article)
     {
-        echo  "Prispevek č.$article[idArticle], $article[title] - $article[abstract] <br/>";
+       // echo  "Prispevek č.$article[idArticle], $article[title] - $article[abstract] -> stav $article[opinion]  <br/>";
+
+
+            echo "<form class='form-horizontal' method = 'post' action = 'index.php?page=rating'>";
+            $name = $article['title'];
+            echo "<tr><td>" . $index . "</td>";
+            echo "<td>" . $name . "</td>";
+            echo "<td>" . $article['idArticle'] . "</td>";
+            echo "<td>" . $article['title'] . "</td>";
+            echo "<input type = 'hidden' name = 'articleid' value = '" . $article['idArticle'] . "'>";
+            echo "<td><input class = 'form-control' type = 'submit' value = 'Ohodnotit' name = 'rate'></td> </tr>";
+            echo "</form>";
+
     }
+    echo "
+                    </tbody>
+                  </table>
+                  </div>
+        ";
 
 
     // Číslování řádek
-    $index = 0;
+
 /*
     foreach ($articles as $article) {
         $index++;
@@ -41,11 +62,6 @@ include_once("controller/register.inc.php");
             echo "<td><input class = 'form-control' type = 'submit' value = 'Ohodnotit' name = 'rate'></td> </tr>";
             echo "</form>";
         }
-    }*/
+    }
+*/
 
-    echo "
-                    </tbody>
-                  </table>
-                  </div>
-                </div>
-        ";

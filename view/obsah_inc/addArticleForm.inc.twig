@@ -1,9 +1,30 @@
-<form action="" method="post">
-    <h2>Přidat nový příspěvek</h2>
-    <table class="animate">
-        <tr><td>Titulek: </td><td><input type="text" name="title" size="50"/></td></tr>
-        <tr><td>Popisek: </td><td><textarea name="abstract" rows="10" cols="100" class="ckeditor"></textarea></td></tr>
-        <tr><td>Soubor: </td><td><input type="file" name="fileToUpload" id="fileToUpload"></td></tr>
-        <tr><td></td><td> <input type="submit" value="Odeslat" name="upload"> <input type="reset" value="smazat"> </td></tr>
-    </table>
-</form>
+<div class = 'container'>
+        <h1> Nový článek </h1>
+        <form class='form-horizontal' id = 'naform' method = 'post' enctype='multipart/form-data'>
+          <div class='form-group'>
+            <label class='control-label col-sm-2' for='aname'>Název</label>
+            <div class='col-sm-10'>
+              <input type='text' class='form-control' id='aname' placeholder='Vložte název' name='userdata[name]'>
+            </div>
+          </div>
+          <div class='form-group'>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-sm-2' for='abstract'>Abstrakt:</label>
+            <div class='col-sm-10'>
+              <textarea form='naform'  class='form-control' id='abstract' placeholder='Zde napište abstrakt' name='userdata[abstract]'></textarea>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class='control-label col-sm-2' for='userfile'>PDF soubor:</label>
+            <div class='col-sm-10'>
+              <input type='file' class='form-control' id='userfile' name ='userfile'>
+            </div>
+          </div>
+          <div class='form-group'>
+            <div class='col-sm-2'>
+              <input type='submit' class='form-control' name = 'upload'>
+            </div>
+          </div>
+        </form>
+    </div>
