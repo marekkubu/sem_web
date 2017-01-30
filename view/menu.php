@@ -7,6 +7,7 @@
  */
 
 require_once('model/login.class.php');
+require_once("controller/logout.inc.php");
 
 $page = @$_REQUEST["page"];
 
@@ -52,7 +53,27 @@ if (Login::isLog()) {
     $menu .="<ul class='nav navbar-nav'>";
     $menu .= "<li $active_pom><a href='index.php?page=moje_prispevky'>$title</a></li>";
     $menu .="</ul>";
+
+    //Pokud uzivatel ma prava typu admin, zobrazi se mu tlacitko, pomoci ktereho se dostane na stranku administrace
+    if(Login::getUserInfo("POWERS") == 'admin'){
+        $menu .= "<ul class='nav navbar-nav navbar-right'>
+                <form method='post'action = 'index.php?page=administrace'>
+				<input type=\"hidden\" name=\"administration\">
+				<li><button class=\"btn btn-primary btn-block\" type=\"submit\" name='administration'>Administrace </button></li>
+				</form>
+            </ul>";
+    }
+    //Pokud je uzivatel recenzent zobrazi se mu tlacitko Hodnotit, ktere odkazuje na jeho stranku, kde jsou zobrazeny prispevky, ktere muuze hodnotit
+    if(Login::getUserInfo("POWERS") == 'reviewer'){
+        $menu .= "<ul class='nav navbar-nav navbar-right'>
+                <form method='post' action = 'index.php?page=hodnoceni'>
+				<input type=\"hidden\" name=\"rating\">
+				<li><button class=\"btn btn-warning btn-block\" type=\"submit\" name='rating' >Hodnocení </button></li>
+				</form>
+            </ul>";
+    }
 }
+
 
 //Pokud uzivatel neni prihlasen
 else {

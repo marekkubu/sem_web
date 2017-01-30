@@ -37,12 +37,21 @@ elseif($page == "prispevky") {
 
 }
 elseif($page == "moje_prispevky") {
-    $filename = "view/obsah_inc/moje_prispevky.inc.php";
+    $filename = "model/my_articles.inc.php";
+
+}
+elseif($page == "administrace") {
+    $filename = "view/administrationArticle.php";
+
+}
+elseif($page == "hodnoceni") {
+    $filename = "view/rating.php";
 
 }
 
-else
+else{
     $filename = "view/obsah_inc/404.inc.php";
+    }
 
 
 $obsah = phpWrapperFromFile($filename);

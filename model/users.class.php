@@ -18,25 +18,32 @@ class Users extends db_pdo {
 
         return $info;
     }
-   /* public function addUser($username, $password, $email){
-       if($this->userExists($username)){
-            return "obsazeno";
-        }
-            $item = array();
-            $item['username'] = $username;
-            $item['password'] = $password;
-            $item['email'] = $email;
-            $this->DBInsert("uzivatel", $item);
+    public function loadUserById($userID)
+    {
+        $table_name = "users";
+        $columns = "*";
+        $where = array();
+        $where[] = array("column" => "idUser", "value" => $userID, "symbol" => "=");
 
-        $stmt = $this->connection->prepare("INSERT INTO uzivatel VALUES(:username, :password,  :email)");
+        $info = $this->DBSelectAll($table_name, $columns, $where);
 
-        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
-        $stmt->bindParam(":password", $password, PDO::PARAM_STR);
-        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-        return $stmt->execute();
-    }*/
+        return $info;
+    }
+
+     public function loadReviewers()
+    {
+        $table_name = "users";
+        $columns = "*";
+        $where = array();
+        $where[] = array("column" => "powers", "value" => "reviewer", "symbol" => "=");
+
+        $info = $this->DBSelectAll($table_name, $columns, $where);
+
+        return $info;
+    }
+
      public function addUser($username, $password, $email, $powers){
-         echo "$username, $password, $email, $powers";
+         //echo "$username, $password, $email, $powers";
          if($this->userExists($username)){
              return "obsazeno";
          }
@@ -85,43 +92,6 @@ class Users extends db_pdo {
         $users = $this->DBSelectAll($table_name,  $columns, null);
         return $users;
     }
-
-    // Přidá uživatele s danými parametry
-   /* public function addUser($username, $password, $email) {
-
-        $table_name = "uzivatel";
-        $item = array();
-
-        $item['username'] = $username;
-        $item['password'] = $password;
-        $item['email'] = $email;
-        $this->DBInsert($table_name, $item);
-
-    }
-
-    // Odstraní uživatele s daným ID
-    public function removeUser($id) {
-
-        $table_name = "uzivatel";
-        $where = array();
-        $where[] = array("column" => "ID", "value" => $id, "symbol" => "=");
-
-        $this->DBDelete($table_name, $where, "LIMIT 5");
-
-    }
-
-    // Upraví dané informace o uživateli s daným ID
-    public function updateUser($value, $data) {
-        $table_name = "uzivatel";
-        $where = array();
-        $where[] = array("column" => "ID", "value" => $value, "symbol" => "=");
-
-        $item = array();
-        $item['ROLE'] = $data[0];
-        $item['EMAIL'] = $data[1];
-
-        $this->DBUpdate($table_name, $where, $item);
-    }*/
 
 
 }

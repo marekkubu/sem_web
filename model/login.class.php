@@ -1,5 +1,5 @@
 <?php
-define("USER", 'user');
+define("USER", 'users');
 require_once('model/users.class.php');
 require_once('settings_db.inc.php');
 
@@ -14,6 +14,7 @@ class Login {
             $_SESSION[USER]['LOGIN'] = true;
             $_SESSION[USER]['NAME'] = $username;
             $_SESSION[USER]['ID'] = $info[0]['idUser'];
+            $_SESSION[USER]['POWERS'] = $info[0]['powers'];
         }
 
     }
@@ -22,36 +23,7 @@ class Login {
     }
 
 
-   /* public function addUser($username, $password, $email){
-        if($this->userExists($username)){
-            return "obsazeno";
-        }
-        try {
-            $sth = $this->db->prepare("INSERT INTO uzivatel(username, password, email)
-                VALUES (:username,:password,:email)");
-            $sth->bindParam(':username', $username);
-            $sth->bindParam(':password', $password);
-            $sth->bindParam(':email', $email);
-            $sth->execute();
-            if($this->userExists($username)){
-                return "ok";
-            }
-            else {
-                return "chyba";
-            }
-        } catch (Exception $e) {
-            return "chyba"; //chyba v pozadavku
-        }
-    }*/
-  /*  public function userExists($login){
-        $usr = $this->userInfo($login);
-        if($usr == null) { // uzivatel neni v DB
-            return false;
-        }
-        else {
-            return true;
-        }
-    }*/
+
     public static function isLog() {
         if (isset($_SESSION[USER]['LOGIN']) && $_SESSION[USER]['LOGIN']) {
             return true;
@@ -60,19 +32,11 @@ class Login {
             return false;
         }
 
-    }/*
-    public function userInfo($login){
-        $sth = $this->db->prepare("SELECT * FROM uzivatel
-               WHERE username LIKE :username");
-        $sth->bindParam(':username', $login);
-        $sth->execute();
-        $row = $sth->fetch();
-        return $row;
-    }*/
+    }
     public static function getUserInfo($what) {
-
         if (isset($_SESSION[USER])) {
             if (isset($_SESSION[USER][$what])) {
+
                 return $_SESSION[USER][$what];
             }
             else {

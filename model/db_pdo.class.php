@@ -397,9 +397,88 @@ class db_pdo
         }
     }
 
-    public function DBUpdate()
+    public function DBUpdate($table_name, $where_array, $set)
     {
-        // TODO tuto metodu si již musíte dopsat sami
+       $mysql_pdo_error = false;
+
+        $where_pom = "";
+        foreach ($where_array as $index => $item ) {
+            if ($where_pom != "") $where_pom .= "AND ";
+
+            // pokud neexistuje klic column, tak preskocit
+            if (!key_exists("column", $item))
+            {
+                echo "asi chyba v metode DBDelete - chybi klic column <br/>";
+                continue;
+            }
+
+            $column = $item["column"];
+            $symbol = $item["symbol"];
+
+            if (key_exists("value", $item))
+                $value_pom = "?"; 						// budu to navazovat
+
+            //echo "`$column` $symbol  $value_pom ";
+            $where_pom .= "$column $symbol  $value_pom ";
+        }
+
+        $set_pom = "";
+
+        foreach ($set as $column => $value) {
+            if ($set_pom != "") { $set_pom .= ','; }
+            $set_pom .= "$column =?";
+        }
+
+        $query = "update " . $table_name . " set " . $set_pom . " where " . $where_pom;
+
+        // 2) pripravit si statement
+			$statement = $this->connection->prepare($query);
+
+			// 3) NAVAZAT HODNOTY k otaznikum dle poradi od 1
+			$bind_param_number = 1;
+
+         foreach ($set as $column => $value) {
+						$statement->bindValue($bind_param_number, $value);  // vzdy musim dat value, abych si nesparoval promennou (to nechci)
+						$bind_param_number ++;
+				}
+
+			if ($where_array != null)
+				foreach ($where_array as $index => $item)
+				{
+					if (key_exists("value", $item))
+					{
+						$value = $item["value"];
+						//echo "navazuju value: $value";
+
+						$statement->bindValue($bind_param_number, $value);  // vzdy musim dat value, abych si nesparoval promennou (to nechci)
+						$bind_param_number ++;
+					}
+				}
+
+
+                $statement->execute();
+
+				// 5) kontrola chyb
+				$errors = $statement->errorInfo();
+
+				if ($errors[0] + 0 > 0)
+				{
+					// nalezena chyba
+					$mysql_pdo_error = true;
+				}
+
+				// 6) nacist data a vratit
+				if ($mysql_pdo_error == false)
+				{
+					// tady nevim, co bych vracel - smazani se podarilo
+				}
+				else
+				{
+					echo "Chyba v dotazu - PDOStatement::errorInfo(): ";
+					printr($errors);
+					echo "SQL dotaz: $query";
+				}
+
     }
 
 

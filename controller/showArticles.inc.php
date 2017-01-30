@@ -19,7 +19,6 @@ include_once("controller/register.inc.php");
 
     foreach ($array_articles as $article)
     {
-       // echo  "Prispevek č.$article[idArticle], $article[title] - $article[abstract] -> stav $article[opinion]  <br/>";
 
 
             echo "<form class='form-horizontal' method = 'post' action = 'index.php?page=rating'>";
@@ -39,29 +38,4 @@ include_once("controller/register.inc.php");
                   </div>
         ";
 
-
-    // Číslování řádek
-
-/*
-    foreach ($articles as $article) {
-        $index++;
-        // Načteme si článek s daným ID, abych o něm mohli hodnotiteli vypsat základní informace
-        $art = $articles_db->loadArticleWithID($article['ARTICLES_ID']);
-
-        if ($art['STATE'] === 'P') {
-            echo "<form class='form-horizontal' method = 'post' action = 'index.php?page=rating'>";
-            $name = $art['NAME'];
-            echo "<tr><td>" . $index . "</td>";
-            echo "<td>" . $name . "</td>";
-            echo "<td>" . $article['ARTICLES_USERS_ID'] . "</td>";
-            echo "<td>" . $article['CRIT1'] . "</td>";
-            echo "<td>" . $article['CRIT2'] . "</td>";
-            echo "<td>" . $article['CRIT3'] . "</td>";
-            echo "<input type = 'hidden' name = 'articleid' value = '" . $article['ARTICLES_ID'] . "'>";
-            echo "<input type = 'hidden' name = 'resultid' value = '" . $article['ID'] . "'>";
-            echo "<td><input class = 'form-control' type = 'submit' value = 'Ohodnotit' name = 'rate'></td> </tr>";
-            echo "</form>";
-        }
-    }
-*/
 

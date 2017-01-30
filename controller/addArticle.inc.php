@@ -2,27 +2,7 @@
 require_once('model/login.class.php');
 require_once('model/article.class.php');
 // Zkusíme se přihlásit
-if (Login::isLog() && $page =="prispevky" ){/*
-    include_once("view/obsah_inc/addArticleForm.inc.twig");
-    if (isset($_POST['upload'])) {
-        $title=$_POST['title'];
-        $abstract=$_POST['abstract'];
-       // $file=$_POST['fileToUpload'];
-        $tmpName = $_FILES['userfile']['tmp_name'];
-
-        $fileOpen = fopen($tmpName, 'r');
-        $file = fread($fileOpen, filesize($tmpName));
-        fclose($fileOpen);
-
-        date_default_timezone_set("Europe/Prague");
-        $dateTime = date("Y-m-d G:i:s");
-        echo $title, " ", $abstract," ", $tmpName," ", $dateTime;
-        $article = new Article();
-        $userId=$_SESSION[USER]['ID'];
-        //echo $userId;
-        $article ->addArticle($title,$abstract,$dateTime,$userId,$file);
-        echo "Upload!";
-    }*/
+if (Login::isLog() && $page =="prispevky" ){
 include_once("view/obsah_inc/addArticleForm.inc.twig");
 $valid = true;
 $add = false;
@@ -35,6 +15,8 @@ if (isset($_POST['upload'])) {
     // Pokud je něco nevplněné, musí to uživatel napravit
     if ($userdata['name'] == "" || $userdata['abstract'] == "" || $_FILES['userfile']['tmp_name'] == "") {
         $valid = false;
+
+        echo "<div class='alert alert-warning'>  <strong>Pozor!</strong> Zkontolujte, zda máte vyplněny všechny informace a správně zvolenou cestu k PDF souboru!</div>";
     }
     // Uložím nový článek
     else {
@@ -56,23 +38,15 @@ if (isset($_POST['upload'])) {
         date_default_timezone_set("Europe/Prague");
         $dateTime = date("Y-m-d G:i:s");
         $articles_db->addArticle($name, $abstract, $dateTime, $userID, $content);
-
         $add = true;
+        if ($add==true){
+            echo "<div class='alert alert-success'>  <strong>Nahráno!</strong> Nahrávání přispěvku proběhlo vpořádku!</div>";
+        }
+        else {
+            echo "<div class='alert alert-danger'>  <strong>Chyba!</strong> Nepodařilo se nahrát příspěvek!</div>";
+            }
+        }
     }
 }
 
-}
-/*
-if (isset($_POST['register'])) {
-    $newUser = $_POST['reg_user'];
-    $users = new Users();
-    $users->Connect();
-    $add=$users->addUser($newUser['username'],$newUser['password'],$newUser['email'],"viewer");
-    if($add=='ok'){
-        Login::log_in($newUser['username'],$newUser['password']);
-        header('Refresh: 0');
-    }elseif($add=="obsazeno"){
-        echo " OBSAZENO!";
-    }
 
-}*/
